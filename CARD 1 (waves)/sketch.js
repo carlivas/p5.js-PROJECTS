@@ -9,7 +9,7 @@ function setup() {
   strokeW = 5
 
   t = 0;
-  speed = 0.001;
+  speed = 0.0003;
 }
 
 function draw() {
@@ -30,7 +30,7 @@ function draw() {
       xVal = lerp(-0.4, 0.4, i / detail);
       //curveVertex(xVal, yVal + scaling*noise(xVal/500))
 
-      scalingNoise = noise(t * 5 + 1000) * pow(exp(-t * 10 + 3) + 1, -1);
+      scalingNoise = noise(t * 5 + 1000) * pow(exp(-t * 3 + 3) + 1, -1);
       scalingNoise = noise(t * 5 + 1000);
 
       //horizontalOffset = 10*pow(noise(t + 2000)*noise(t + 3000), 2)

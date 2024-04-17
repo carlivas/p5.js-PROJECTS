@@ -32,12 +32,13 @@ function Particle() {
       this.pos.y > height ||
       this.pos.y < 0
     ) {
+      this.vel.mult(0);
       this.pos = createVector(random(width), random(height));
     }
   };
 
   this.show = function () {
-    stroke(255, 10);
+    stroke(255, 25);
     strokeWeight(1);
     point(this.pos.x, this.pos.y);
   };

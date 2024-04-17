@@ -1,7 +1,8 @@
 let numOfLines = 100;
 let colors = [];
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  size = min(windowWidth, windowHeight);
+  createCanvas(size, size);
 
   colors = [color(175, 0, 0), color(0, 175, 0), color(115)];
   //noLoop();
@@ -11,11 +12,11 @@ function draw() {
   translate(0, height / 2);
   scale(1, -1);
   background(205);
-  let animSpeed = 1 / 500;
+  let animSpeed = 1 / 2000;
 
   let i = 0;
   let w = width * 0.9;
-  let h = height * 0.8;
+  let h = height * 0.6;
   let n = noise(frameCount * animSpeed);
   let fmin = lerp(1 / 20, 1 / 10000, n + 2 * sin(n));
   let fmax = lerp(1 / 10000, 1 / 20, n - sin(n));

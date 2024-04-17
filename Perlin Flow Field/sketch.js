@@ -1,4 +1,4 @@
-var inc = 0.01;
+var inc;
 var scl = 10;
 var cols, rows;
 
@@ -12,7 +12,9 @@ var numOfParticles = 10000;
 var flowfield;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  inc = random(0.01, 0.1)
+  size = min(windowWidth, windowHeight)
+  createCanvas(size, size);
   background(30);
   cols = floor(width / scl);
   rows = floor(height / scl);
