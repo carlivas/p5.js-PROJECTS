@@ -5,7 +5,7 @@ function setup() {
   
   backgroundColor = color(30)
   stroke(backgroundColor);
-  strokeWeight(4);
+  strokeWeight(3);
   strokeJoin('round')
   fill('white')
   fill(225)

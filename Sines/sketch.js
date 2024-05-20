@@ -1,51 +1,57 @@
 function setup() {
-  createCanvas(600, 600);
-  
-  t = 0;
+  createCanvas(4100, 5800);
+
 }
 
+
+let t = 0;
 function draw() {
-  t++
-  background(30);
-  
-  numOfPoints0 = 300;
-  amplitude0 = 7;
-  //speed0 = 0.03;
-  speed0 = 0;
-  phase0 = Math.PI + t*speed0;
-  pointSize0 = 10;
-  frequency0 = 5 * Math.PI;
-  
-  numOfPoints = numOfPoints0;
-  amplitude = amplitude0;
-  speed = speed0;
-  phase = phase0
-  pointSize = pointSize0;
-  frequency = frequency0;
-  
-  translate(0, height - amplitude0 - pointSize0/2 - 10);
-  stroke(225)
-  numOfLines = 15
-  for(let i = 0; i < 15; i++){
-    amt = i/(numOfLines - 1);    
-    numOfPoints = numOfPoints0;
-    amplitude = amplitude0 * lerp (1, 0, 1 - amt);
-    speed = speed0 * lerp(1, 2, amt)
-    // phase = Math.PI * (i%2 + 1) + t*speed;
-    phase = Math.PI * (i%2 + 1) + t*speed + lerp(1, 2 * Math.PI, -mouseX/width * pow(amt,2));
-    pointSize = pointSize0 * lerp(1,2, 1 - amt);
-    frequency = frequency0;
-    
-    strokeWeight(pointSize);
-    WavySine(numOfPoints, amplitude, phase, frequency);
-    translate(0, -(amplitude*2 + pointSize*1.2));
-  }
-}
+  translate(0, height)
+  scale(1, -1)
+  background(252, 186, 3);
+  noFill();
 
-function WavySine(numOfPoints, amplitude, phase, frequency){
-    for(let i = 0; i < numOfPoints ; i++){
-    x = i*(width)/numOfPoints;
-    y = amplitude * sin(i*frequency/numOfPoints + phase)
-    point(x, y)
+  // c0 = 800
+  // strokeWeight(c0)
+  // point(width/2, 3*height/4)
+  // let num_circles = 6;
+  // for(let i = 0; i < num_circles; i++){
+  //   L = i/(num_circles - 1)
+  //   C1 = color(250, 65, 22)
+  //   C2 = color(252, 186, 3)
+  //   s = lerpColor(C1, C2, L + 0.2)
+  //   w = lerp(100, 10, L)
+  //   strokeWeight(w)
+  //   stroke(s)
+  //   noFill()
+  //   c = lerp(c0 + 400, c0 + 300*num_circles, L)
+  //   ellipse(width/2, 3*height/4, c, c)
+  // }
+
+  let r0 = 150
+  let num_sines = 13;
+  y_offset = -r0
+  for (let n = 0; n < num_sines; n++) {
+    L = n / (num_sines - 1);
+    r = lerp(r0, 130, L);
+    amplitude = lerp(0, 75, L);
+    frequency = lerp(18, 20, L);
+    phase = t * n + n * PI
+
+    y_offset += 2 * amplitude + r + 10;
+
+    numOfPoints = lerp(200, 500, L);
+    beginShape();
+    for (let i = 0; i < numOfPoints; i++) {
+      x = i * (width) / numOfPoints;
+      y = y_offset + amplitude * sin(i * frequency / numOfPoints + phase)
+      // s = lerp(225, 195/num_sines + 30, L**2)
+      s = color(250, 65, 22)
+      stroke(s)
+      strokeWeight(r);
+      vertex(x, y)
+    }
+    endShape();
   }
+  t += 0.005
 }

@@ -1,4 +1,6 @@
 var inc;
+var dInc;
+var t = 0;
 var scl = 10;
 var cols, rows;
 
@@ -13,8 +15,9 @@ var flowfield;
 
 function setup() {
   inc = random(0.01, 0.1)
+  dInc = 0
   size = min(windowWidth, windowHeight)
-  createCanvas(size, size);
+  createCanvas(windowWidth, windowHeight);
   background(30);
   cols = floor(width / scl);
   rows = floor(height / scl);
@@ -64,4 +67,7 @@ function draw() {
   }
 
   fr.html(floor(frameRate()));
+  n = (noise(t) - 1/2)*dInc
+  inc += n
+  t += 0.01
 }
