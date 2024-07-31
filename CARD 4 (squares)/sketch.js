@@ -1,25 +1,34 @@
 function setup() {
-  createCanvas(700, 700);
+  size = min(windowWidth, windowHeight)
+  aspect = 495/395  
+  createCanvas(size, size*aspect);
+
+  nOffset = random(0, 1000000)
   step = 0;
   margin = 0.2
-  
-  backgroundColor = color(30)
-  stroke(backgroundColor);
-  strokeWeight(3);
-  strokeJoin('round')
-  fill('white')
-  fill(225)
 }
 
 function draw() {  
   step+=0.002;
-  background(backgroundColor);
+
+  colorMode(HSB, 1, 1, 1);
+  let green = color(0.29, 1, 0.4)
+  let red = color(0.98, 1, 0.8);
+  let blue = color(0.7, 1, 0.55);
+  col1 = red
+  col2 = blue
+  background(col1);
+  stroke(col1);
+  strokeWeight(3);
+  strokeJoin('round')
+  fill(col2)
+
   
   sideLength = 40;
   division = 10;
   
   numOfColumns = 10;
-  numOfLines = 10;
+  numOfLines = numOfColumns*aspect;
   angle = step;
   for(let i = 0; i < numOfColumns; i++){
     for(let j = 0; j < numOfLines; j++){
@@ -34,7 +43,7 @@ function draw() {
       a = atan2(mouseY - height/2,mouseX - width/2);
       
 
-      SquishyQuad(posX, posY, sideLength, cos(angle + i/(4*Math.PI)), sin(angle + j/(4*Math.PI)));
+      SquishyQuad(posX, posY, sideLength, cos(a + i/(4*Math.PI)), sin(a + j/(4*Math.PI)));
       
 
       

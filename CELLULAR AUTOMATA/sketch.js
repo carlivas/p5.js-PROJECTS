@@ -68,7 +68,7 @@ function rules(neighbourhood) {
 
   let sum = neighbourhood[0] + neighbourhood[1] + neighbourhood[2];
   if (sum == 0) { val = 1; }
-  else if (sum == 1) { val = 0; }
+  else if (sum == 1) { val = 1; }
   else if (sum == 2) { val = 1; }
   if (sum == 3) { val = 0; }
  
